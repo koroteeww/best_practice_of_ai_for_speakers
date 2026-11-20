@@ -4,6 +4,8 @@
 
 Made by **Aivan (Ivan) Koroteev**: TEDx speaker (RU/EN), AI engineer with a Computer Science degree (Bauman Moscow State Technical University), 13+ years in enterprise IT, speaker on Applied AI and creativity for introverts. Co-written with **Claude** (Anthropic).
 
+🌐 **Website:** [ivankoroteev.ru/en](https://ivankoroteev.ru/en) · 🎤 **Public speaking training for software engineers and IT teams:** [creativityforintroverts.com](https://creativityforintroverts.com/public-speaking-training-for-software-engineers-and-it-teams/)
+
 ---
 
 ## Why this exists
@@ -77,6 +79,16 @@ python tools/check_render.py examples/out/example.pptx   # optional, needs Libre
 - **Old numbers are historical until verified.** Platform stats from 2022 are not facts in 2026.
 - **Privacy.** Passports, bank details, contracts and other people's faces stay out of prompts, out of search and out of public repos.
 - **Render and look.** A PPTX that saves without errors can still look broken. Export it, look at every slide and rehearse with a timer.
+
+## Author and contacts
+
+**Aivan Koroteev** is an AI engineer and TEDx speaker. He gives talks, workshops and corporate training on Applied AI, AI for presentations, and creativity and public speaking for introverts, in English and Russian.
+
+- Website: https://ivankoroteev.ru/en
+- Public speaking training for software engineers and IT teams: https://creativityforintroverts.com/public-speaking-training-for-software-engineers-and-it-teams/
+- TEDx: [Creativity for introverts](https://www.youtube.com/watch?v=2OBxE1Y1J_c)
+
+If this playbook helped you, star the repo or open an issue with your own workflow.
 
 ## License
 
