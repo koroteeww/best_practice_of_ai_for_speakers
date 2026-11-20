@@ -1,0 +1,69 @@
+filters:
+  and:
+    - file.inFolder("_Base/Events")
+    - file.ext == "md"
+properties:
+  note.year:
+    displayName: Year
+  note.city:
+    displayName: City
+  note.format:
+    displayName: Format
+  note.audience:
+    displayName: Audience
+  note.status:
+    displayName: Status
+  note.paid:
+    displayName: Paid
+  note.fee:
+    displayName: Fee
+  note.verified:
+    displayName: Verified
+views:
+  - type: table
+    name: By year
+    groupBy:
+      property: note.year
+      direction: DESC
+    order:
+      - file.name
+      - note.city
+      - note.format
+      - note.audience
+      - note.status
+      - note.paid
+      - note.verified
+  - type: table
+    name: Planned
+    filters:
+      or:
+        - note.status == "planned"
+        - note.status == "request"
+    order:
+      - file.name
+      - note.date
+      - note.city
+      - note.format
+      - note.fee
+    sort:
+      - property: note.date
+        direction: ASC
+  - type: table
+    name: Paid
+    filters:
+      and:
+        - note.paid == true
+    order:
+      - file.name
+      - note.year
+      - note.city
+      - note.fee
+  - type: table
+    name: Needs checking
+    filters:
+      and:
+        - note.verified != true
+    order:
+      - file.name
+      - note.year
+      - note.city

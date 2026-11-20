@@ -1,0 +1,14 @@
+{
+  "newFileLocation": "folder",
+  "newFileFolderPath": "_Base/Inbox",
+  "attachmentFolderPath": "_Base/Attachments",
+  "useMarkdownLinks": false,
+  "newLinkFormat": "absolute",
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": true,
+  "propertiesInDocument": "visible",
+  "userIgnoreFilters": [
+    "_ai/",
+    "Private/"
+  ]
+}

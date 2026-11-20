@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+examples/out/
+*_check/
+_ai/
+.obsidian/workspace*.json

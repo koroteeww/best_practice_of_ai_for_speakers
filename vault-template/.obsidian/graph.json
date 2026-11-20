@@ -1,0 +1,11 @@
+{
+  "search": "path:_Base -path:_Base/Templates",
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "colorGroups": [
+    {"query": "path:_Base/Topics", "color": {"a": 1, "rgb": 15105570}},
+    {"query": "path:_Base/Events", "color": {"a": 1, "rgb": 3381759}},
+    {"query": "path:\"_Base/Story bank\"", "color": {"a": 1, "rgb": 5025616}},
+    {"query": "path:_Base/Decks", "color": {"a": 1, "rgb": 10066329}}
+  ]
+}

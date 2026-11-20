@@ -1,0 +1,38 @@
+{
+  "private_folders": [
+    "Personal/Passport and bank details",
+    "Contracts"
+  ],
+  "topics": {
+    "AI for business": {
+      "description": "Applied AI for managers and entrepreneurs: productivity, marketing, sales, agents, RAG.",
+      "keywords": "\\bai\\b|\\bии\\b|нейросет|gpt|llm|agent|агент"
+    },
+    "AI for speakers": {
+      "description": "Preparing talks and slides with AI: script, design, voice, translation.",
+      "keywords": "presentation with ai|ai for speakers|toastmasters|второй пилот"
+    },
+    "Creativity for introverts": {
+      "description": "How an introvert becomes a confident speaker.",
+      "keywords": "introvert|интроверт|tedx|self-presentation"
+    }
+  },
+  "events": {
+    "2024_TechWeek": {
+      "title": "TechWeek 2024 — AI in retail",
+      "year": 2024,
+      "city": "Moscow",
+      "format": "talk",
+      "audience": "retail",
+      "topics": ["AI for business"],
+      "description": "Talk and booth photos."
+    },
+    "Workshops/2026_Spring": {
+      "title": "Spring 2026 — AI workshop series",
+      "year": 2026,
+      "format": "workshop",
+      "paid": true,
+      "topics": ["AI for business"]
+    }
+  }
+}

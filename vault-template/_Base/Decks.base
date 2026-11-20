@@ -1,0 +1,61 @@
+filters:
+  and:
+    - file.inFolder("_Base/Decks")
+    - file.ext == "md"
+properties:
+  note.event:
+    displayName: Event
+  note.year:
+    displayName: Year
+  note.topics:
+    displayName: Topics
+  note.slides:
+    displayName: Slides
+  note.lang:
+    displayName: Language
+  note.rating:
+    displayName: Rating
+  note.modified:
+    displayName: Modified
+views:
+  - type: table
+    name: All decks
+    order:
+      - file.name
+      - note.event
+      - note.year
+      - note.topics
+      - note.slides
+      - note.lang
+      - note.rating
+    sort:
+      - property: note.modified
+        direction: DESC
+  - type: table
+    name: Recent
+    limit: 15
+    order:
+      - file.name
+      - note.event
+      - note.modified
+    sort:
+      - property: note.modified
+        direction: DESC
+  - type: table
+    name: English
+    filters:
+      and:
+        - note.lang == "en"
+    order:
+      - file.name
+      - note.event
+      - note.year
+  - type: table
+    name: Best (rating >= 4)
+    filters:
+      and:
+        - note.rating >= 4
+    order:
+      - file.name
+      - note.rating
+      - note.topics
