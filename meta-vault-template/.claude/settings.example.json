@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "D:/Vaults/Personal",
+      "D:/Vaults/Work",
+      "D:/Vaults/Project",
+      "D:/Talks/_Base"
+    ]
+  }
+}

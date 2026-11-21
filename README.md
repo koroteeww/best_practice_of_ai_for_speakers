@@ -19,6 +19,7 @@ This repository shows a workflow that has been tested on a real archive of about
 3. **Organize**: generate an **Obsidian** vault with one note per deck, one per event and one per topic, plus a story bank and dashboards.
 4. **Create**: brief → slide map → assertion-evidence slides → editable PPTX built with code → render and check → rehearse.
 5. **Stay the editor-in-chief.** AI searches, drafts and assembles. You choose the message, check the facts and say it out loud.
+6. **Connect your vaults.** If you keep several knowledge bases (personal, work, projects, talks), one AI chat can see them all through a small **meta vault**: one home for each note, short bridges instead of copies, at most five proposals at a time. See [docs/08](docs/08-many-vaults-one-ai-chat.md).
 
 ## What's inside
 
@@ -31,8 +32,11 @@ This repository shows a workflow that has been tested on a real archive of about
 | [`docs/05-slide-design-principles.md`](docs/05-slide-design-principles.md) | Visual hierarchy, cognitive load, avoiding "Death by PowerPoint", accessibility |
 | [`docs/06-storytelling-and-humor.md`](docs/06-storytelling-and-humor.md) | Story structure, jokes and memes that support a point |
 | [`docs/07-prompt-library.md`](docs/07-prompt-library.md) | Copy-paste prompts for the archive, briefs, remixes, rehearsal and image generation |
+| [`docs/08-many-vaults-one-ai-chat.md`](docs/08-many-vaults-one-ai-chat.md) | Several Obsidian vaults (personal, work, projects, speaking), one AI chat: a meta vault that routes material, proposes bridges and backs everything up |
 | [`docs/case-study-screencast.md`](docs/case-study-screencast.md) | Case study: a 13-slide screencast built in one morning from a speaker's archive |
+| [`docs/case-study-meta-vault.md`](docs/case-study-meta-vault.md) | Case study and reflection: building the meta vault for four real vaults in one session with Claude Code |
 | [`vault-template/`](vault-template/) | A ready-to-open Obsidian vault with templates, dashboards and example notes |
+| [`meta-vault-template/`](meta-vault-template/) | A ready-to-copy meta vault: `CLAUDE.md` rules, vault profiles, hash registry, bridge and digest templates, weekly backup |
 | [`tools/`](tools/) | Python scripts: build the knowledge base, OCR, search, generate the vault, check PPTX rendering |
 | [`examples/`](examples/) | Build a styled 16:9 PPTX with speaker notes from a Markdown script |
 

@@ -1,0 +1,57 @@
+{
+  "_comment": "Copy to vaults.json. path = folder with the notes; obsidian_vault + uri_prefix build obsidian://open links (uri_prefix is needed when the Obsidian vault root is a parent of path). exclude = folders the scanner skips. readonly = folders the AI must never edit. bridge_folder = where bridge notes go in this vault.",
+  "vaults": [
+    {
+      "id": "personal",
+      "name": "Personal",
+      "path": "D:\\Vaults\\Personal",
+      "obsidian_vault": "Personal",
+      "uri_prefix": "",
+      "profile": "vaults/personal.md",
+      "rules_file": "AGENTS.md",
+      "exclude": [".obsidian", ".trash"],
+      "readonly": ["Sources"],
+      "bridge_folder": "Inbox",
+      "privacy": "private: only ideas and techniques leave this vault, no biography, money or relationships"
+    },
+    {
+      "id": "work",
+      "name": "Work",
+      "path": "D:\\Vaults\\Work",
+      "obsidian_vault": "Work",
+      "uri_prefix": "",
+      "profile": "vaults/work.md",
+      "rules_file": "CLAUDE.md",
+      "exclude": [".obsidian", ".trash", ".claude", "Sources/raw_transcripts"],
+      "readonly": ["Sources"],
+      "bridge_folder": "Reference/Methods",
+      "privacy": "NDA: only anonymized methods and conclusions leave this vault, no names, company numbers, vendors or quotes"
+    },
+    {
+      "id": "project",
+      "name": "Project",
+      "path": "D:\\Vaults\\Project",
+      "obsidian_vault": "Project",
+      "uri_prefix": "",
+      "profile": "vaults/project.md",
+      "rules_file": "",
+      "exclude": [".obsidian", ".trash", "_attachments", "Archive"],
+      "readonly": [],
+      "bridge_folder": "Inbox",
+      "privacy": "internal"
+    },
+    {
+      "id": "speaking",
+      "name": "Speaking",
+      "path": "D:\\Talks\\_Base",
+      "obsidian_vault": "Talks",
+      "uri_prefix": "_Base/",
+      "profile": "vaults/speaking.md",
+      "rules_file": "How to use this vault.md",
+      "exclude": [".obsidian", ".trash", "Templates"],
+      "readonly": [],
+      "bridge_folder": "Ideas",
+      "privacy": "almost public"
+    }
+  ]
+}

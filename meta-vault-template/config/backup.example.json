@@ -1,0 +1,17 @@
+{
+  "_comment": "Copy to backup.json. Settings for scripts/backup.py: every vault -> its own zip -> a copy in every enabled destination. Point destinations at folders that a cloud client (Dropbox, Google Drive for desktop, OneDrive) already syncs.",
+  "destinations": [
+    {"name": "dropbox", "path": "D:\\Dropbox\\Backups\\Obsidian", "enabled": true},
+    {"name": "gdrive", "path": "G:\\My Drive\\Backups\\Obsidian", "enabled": false}
+  ],
+  "keep": 6,
+  "max_file_mb": 20,
+  "exclude_dirs": [".git", ".trash", "__pycache__", "node_modules", ".venv"],
+  "extra_folders": [
+    {"id": "meta", "path": "D:\\Vaults\\Meta"}
+  ],
+  "vault_options": {
+    "_comment": "encrypt: true encrypts that vault's archive with AES-256 (needs 7-Zip) using the password from the OBSIDIAN_BACKUP_PASSWORD environment variable. Off by default: a vault with encrypt: true and no password set is skipped.",
+    "work": {"encrypt": false}
+  }
+}

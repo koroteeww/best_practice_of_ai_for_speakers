@@ -4,3 +4,7 @@ examples/out/
 *_check/
 _ai/
 .obsidian/workspace*.json
+meta-vault-template/config/vaults.json
+meta-vault-template/config/backup.json
+meta-vault-template/.claude/settings.json
+meta-vault-template/registry/
