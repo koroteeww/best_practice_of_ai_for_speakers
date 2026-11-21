@@ -20,6 +20,7 @@ This repository shows a workflow that has been tested on a real archive of about
 4. **Create**: brief → slide map → assertion-evidence slides → editable PPTX built with code → render and check → rehearse.
 5. **Stay the editor-in-chief.** AI searches, drafts and assembles. You choose the message, check the facts and say it out loud.
 6. **Connect your vaults.** If you keep several knowledge bases (personal, work, projects, talks), one AI chat can see them all through a small **meta vault**: one home for each note, short bridges instead of copies, at most five proposals at a time. See [docs/08](docs/08-many-vaults-one-ai-chat.md).
+7. **Build the tools for the agent, not for you.** The AI runs the scripts: give it JSON output, slide addresses, merged duplicates, contact sheets it can *look at*, and a `check` command for its own decks. See [docs/09](docs/09-tools-for-ai-agents.md).
 
 ## What's inside
 
@@ -33,11 +34,14 @@ This repository shows a workflow that has been tested on a real archive of about
 | [`docs/06-storytelling-and-humor.md`](docs/06-storytelling-and-humor.md) | Story structure, jokes and memes that support a point |
 | [`docs/07-prompt-library.md`](docs/07-prompt-library.md) | Copy-paste prompts for the archive, briefs, remixes, rehearsal and image generation |
 | [`docs/08-many-vaults-one-ai-chat.md`](docs/08-many-vaults-one-ai-chat.md) | Several Obsidian vaults (personal, work, projects, speaking), one AI chat: a meta vault that routes material, proposes bridges and backs everything up |
+| [`docs/09-tools-for-ai-agents.md`](docs/09-tools-for-ai-agents.md) | Designing tools for the AI agent: JSON, slide addresses, duplicate merging, contact sheets, self-check. Lessons from an 8,800-slide archive |
 | [`docs/case-study-screencast.md`](docs/case-study-screencast.md) | Case study: a 13-slide screencast built in one morning from a speaker's archive |
 | [`docs/case-study-meta-vault.md`](docs/case-study-meta-vault.md) | Case study and reflection: building the meta vault for four real vaults in one session with Claude Code |
 | [`vault-template/`](vault-template/) | A ready-to-open Obsidian vault with templates, dashboards and example notes |
 | [`meta-vault-template/`](meta-vault-template/) | A ready-to-copy meta vault: `CLAUDE.md` rules, vault profiles, hash registry, bridge and digest templates, weekly backup |
-| [`tools/`](tools/) | Python scripts: build the knowledge base, OCR, search, generate the vault, check PPTX rendering |
+| [`tools/kb.py`](tools/kb.py) | **The agent's tool**: slide-level index and search, slide text and PNG, contact sheets, Obsidian candidate lists, `check` for built decks. JSON output |
+| [`agent-template/`](agent-template/) | `CLAUDE.md` + `AGENTS.md` to drop into a speaker folder, so any agent session knows the tools, the workflow and the privacy rules |
+| [`tools/`](tools/) | Other Python scripts: build the knowledge base, OCR, simple search, generate the vault, check PPTX rendering |
 | [`examples/`](examples/) | Build a styled 16:9 PPTX with speaker notes from a Markdown script |
 
 ## Quick start
@@ -58,6 +62,18 @@ python tools/search.py "D:/Talks" "first three seconds"
 
 # 4. Generate an Obsidian vault on top of the folder
 python tools/build_obsidian_vault.py "D:/Talks"
+```
+
+**If an AI agent will do the work (recommended):**
+1. Copy [`agent-template/CLAUDE.md`](agent-template/CLAUDE.md) and `AGENTS.md` into `D:/Talks` and fill in the bracketed parts.
+2. Tell the agent: *"Index my archive with tools/kb.py and build a 20-minute English talk on X."*
+
+The agent runs these itself:
+
+```bash
+python tools/kb.py --root "D:/Talks" update
+python tools/kb.py --root "D:/Talks" search "first three seconds"
+python tools/kb.py --root "D:/Talks" sheet --hits "first three seconds"   # PNG grid the agent looks at
 ```
 
 Then open `D:/Talks` in Obsidian as a vault and start from `_Base/Home.md`. If you'd rather start from an empty vault, open `vault-template/` instead.
