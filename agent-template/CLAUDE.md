@@ -7,7 +7,12 @@ This folder is [Name]'s archive of talks: PPTX, PDF, photos, videos, proofs. New
 Never move or modify originals. Save new decks as new files in `_New/<date>_<topic>/`.
 
 ## Tool: `kb.py`
-`python [path/to]/kb.py --root . <command>`. It returns compact JSON. Errors come back as `{"error": …}` with exit code 1. Paths are relative to this folder. `png` and `sheet` fields are absolute image paths: **open them with your image/Read tool to see the slides.**
+`python [path/to]/kb.py --root . <command>`. Paths are relative to this folder.
+
+**Where the result goes:** the console shows only one line, `<file> | <summary>`. The full JSON result of every call is saved to `_ai/kb_out/<time>_<command>.json`, with a copy in `_ai/kb_out/last.json`.
+- Read that file with your Read tool.
+- `_ai/kb_out/history.jsonl` lists every past call. Check it to see what earlier sessions already searched.
+- Errors: `{"error": …}` in the file, a summary starting with "ERROR", and exit code 1. `png` and `sheet` fields are absolute image paths: **open them with your image/Read tool to see the slides.**
 
 | Task | Command |
 |---|---|

@@ -4,7 +4,7 @@ Python 3.10+. `pip install -r tools/requirements.txt`
 
 | Script | What it does | Needs |
 |---|---|---|
-| **`kb.py --root <folder> <command>`** | **The agent's tool** ([docs/09](../docs/09-tools-for-ai-agents.md)). Commands:<br>• `update`: slide-level index<br>• `search`: duplicates merged<br>• `show`, `outline`, `decks`<br>• `sheet`: contact-sheet PNG<br>• `preview`<br>• `collect`: Obsidian candidate list<br>• `check`: verify a built deck<br>Output is JSON. Uses OCR from `ocr.py` if present | python-pptx, PyMuPDF, Pillow; LibreOffice for `check` and for PPTX without a PDF twin |
+| **`kb.py --root <folder> <command>`** | **The agent's tool** ([docs/09](../docs/09-tools-for-ai-agents.md)). Results are saved as JSON files in `_ai/kb_out/`, and the console gets one line. Commands:<br>• `update`: slide-level index<br>• `search`: duplicates merged<br>• `show`, `outline`, `decks`<br>• `sheet`: contact-sheet PNG<br>• `preview`<br>• `collect`: Obsidian candidate list<br>• `check`: verify a built deck<br>Uses OCR from `ocr.py` if present | python-pptx, PyMuPDF, Pillow; LibreOffice for `check` and for PPTX without a PDF twin |
 | `build_knowledge_base.py <folder>` | Inventory + text of every PPTX slide (with speaker notes), PDF page, DOCX and TXT → `<folder>/_ai/kb.sqlite3` with FTS5 search | python-pptx, PyMuPDF |
 | `ocr.py <folder> --lang eng+rus` | OCR for scanned PDF pages, images and pictures inside PPTX. Resumable, SHA-256 cache | Tesseract, Pillow |
 | `search.py <folder> "phrase"` | Full-text search. Prints the file and the slide/page number | — |

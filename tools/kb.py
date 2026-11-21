@@ -1,7 +1,14 @@
 """
 kb.py — a speaker-archive tool designed to be run by an AI agent (Claude Code, Codex, ...), not by a human.
-Output is compact JSON, errors are {"error": ...} with exit code 1, images are returned as absolute PNG
-paths that the agent opens with its image/Read tool to actually *see* slides.
+
+OUTPUT GOES TO FILES, NOT THE CONSOLE
+  Every call saves its result as JSON in <root>/_ai/kb_out/<time>_<command>.json
+  (a copy in kb_out/last.json, a log of all calls in kb_out/history.jsonl; the last 300 results are kept).
+  The console gets one line: "<file path>  |  <summary>". Read the file with your Read tool:
+  no console-encoding problems, no truncation, and the next session can see what was already searched.
+  Errors: {"error": ...} in the file, "ERROR: ..." in the summary, exit code 1.
+  --stdout prints the full JSON instead; --text prints human-readable text instead.
+  Images are returned as absolute PNG paths that the agent opens with its image/Read tool to *see* slides.
 
     python tools/kb.py --root "D:/Talks" <command> [args]        (or set KB_ROOT, or run from the folder)
 
@@ -26,6 +33,7 @@ QUERY
 
 FILES (all inside <root>/_ai/, originals are never modified)
   slides.sqlite3   slide index (one row per PPTX slide / PDF page / document)
+  kb_out/          results of every call (see above)
   previews/ sheets/ pdf_cache/
   kb_config.json   optional: {"private": ["Contracts", "Personal/ID"], "soffice": "C:/.../soffice.com"}
 OCR text is taken from _ai/kb.sqlite3 if tools/ocr.py has been run (scans, pictures inside slides).
@@ -55,9 +63,40 @@ ROOT = AI = DB = None
 CFG = {}
 
 
+KEEP_FILES = 300
+CALL = {}
+
+
 # ------------------------------------------------------------------ output
+def summary(obj):
+    if "error" in obj:
+        return f"ERROR: {obj['error']}"
+    parts = [f"{k}={len(obj[k])}" for k in ("hits", "slides", "decks", "cells", "issues") if isinstance(obj.get(k), list)]
+    parts += [f"{k}={str(obj[k])[:80]}" for k in ("matches", "total", "count", "items", "note", "processed", "units")
+              if k in obj and not isinstance(obj[k], (list, dict))]
+    parts += [f"{k}=yes" for k in ("sheet", "png") if obj.get(k)]
+    return ", ".join(parts) or "ok"
+
+
 def emit(obj):
-    print(to_text(obj) if TEXT_MODE else json.dumps(obj, ensure_ascii=False, separators=(",", ":")))
+    """Save the result to <root>/_ai/kb_out/<time>_<command>.json (+ last.json, history.jsonl).
+    The console gets one line: file path | summary. The agent reads the file with its Read tool."""
+    if TEXT_MODE or CALL.get("stdout") or AI is None:
+        print(to_text(obj) if TEXT_MODE else json.dumps(obj, ensure_ascii=False, separators=(",", ":")))
+        return
+    out_dir = AI / "kb_out"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S-%f")[:-3]
+    data = json.dumps(dict(command=CALL.get("cmd"), args=CALL.get("args"), at=ts, **obj), ensure_ascii=False, indent=1)
+    f = out_dir / f"{ts}_{CALL.get('cmd', 'kb')}.json"
+    f.write_text(data, encoding="utf-8")
+    (out_dir / "last.json").write_text(data, encoding="utf-8")
+    with (out_dir / "history.jsonl").open("a", encoding="utf-8") as h:
+        h.write(json.dumps(dict(at=ts, command=CALL.get("cmd"), args=CALL.get("args"), file=f.name, summary=summary(obj)),
+                           ensure_ascii=False) + "\n")
+    for old in sorted(out_dir.glob("2*_*.json"))[:-KEEP_FILES]:
+        old.unlink(missing_ok=True)
+    print(f"{f}  |  {summary(obj)}")
 
 
 def fail(msg):
@@ -575,7 +614,8 @@ def main():
     global TEXT_MODE, ROOT, AI, DB, CFG
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--root", default=os.environ.get("KB_ROOT", "."), help="speaker folder (default: KB_ROOT or current dir)")
-    ap.add_argument("--text", action="store_true", help="human-readable output instead of JSON")
+    ap.add_argument("--text", action="store_true", help="human-readable output to the console (no file)")
+    ap.add_argument("--stdout", action="store_true", help="full JSON to the console instead of a file")
     sp = ap.add_subparsers(dest="cmd", required=True)
     p = sp.add_parser("update"); p.add_argument("--full", action="store_true")
     sp.add_parser("stats")
@@ -594,6 +634,8 @@ def main():
     p = sp.add_parser("check"); p.add_argument("pptx")
     a = ap.parse_args()
     TEXT_MODE = a.text
+    CALL.update(cmd=a.cmd, stdout=a.stdout,
+                args={k: v for k, v in vars(a).items() if k not in ("cmd", "text", "stdout", "root") and v not in (None, False)})
     ROOT = Path(a.root).resolve()
     if not ROOT.is_dir():
         fail(f"Root folder not found: {ROOT}")

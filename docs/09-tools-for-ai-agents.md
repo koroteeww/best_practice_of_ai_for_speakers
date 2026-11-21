@@ -8,7 +8,8 @@ This chapter describes the design that came out of that, and the tool that imple
 
 | Rule | Why |
 |---|---|
-| **JSON output**, one compact object per call | The agent parses it instead of guessing from pretty text. `--text` exists for the rare case a human looks. |
+| **JSON output**, one object per call | The agent parses it instead of guessing from pretty text. `--text` exists for the rare case a human looks. |
+| **Results go to files, not the console** (`_ai/kb_out/<time>_<command>.json`, `last.json`, `history.jsonl`) | The console prints one line: path + summary. The agent reads the file with its Read tool, so there are no console-encoding problems and no truncated output. The history shows the next session what was already searched. This was the speaker's own request: "save all these JSONs into your folder, and that's it". |
 | **Errors are data**: `{"error": "..."}` + exit code 1 | A traceback wastes context and hides the fix. Say what to do: "No index yet. Run: … update". |
 | **ASCII command names, one entry point** with subcommands | Shells on Windows mangle non-Latin script names, and one `--help` is enough to learn everything. |
 | **Force UTF-8 stdout** | Windows consoles default to cp1251 or cp437, so one `→` character can crash a script after it has done its work. |
@@ -36,7 +37,7 @@ python tools/kb.py --root "D:/Talks" collect "AI for business"              # ca
 python tools/kb.py --root "D:/Talks" check "_New/2026-12_forum/deck.pptx"   # verify the agent's own deck
 ```
 
-A `search` hit looks like this:
+Each call prints one line, for example `D:/Talks/_ai/kb_out/20261121-081736-136_search.json  |  hits=5, matches=32`. The agent then reads that file. One `search` hit inside it looks like this:
 
 ```json
 {"path":"Regional/Social_media_4.pdf","n":69,"kind":"page","title":"Structure of a video story","lang":"ru",
