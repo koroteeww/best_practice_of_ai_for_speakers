@@ -1,0 +1,27 @@
+{
+  "collapse-filter": false,
+  "search": "path:map",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": false,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {"query": "path:map/vaults", "color": {"a": 1, "rgb": 14701138}},
+    {"query": "path:map/projects", "color": {"a": 1, "rgb": 5431378}},
+    {"query": "path:map/materials", "color": {"a": 1, "rgb": 5419488}},
+    {"query": "path:map/links", "color": {"a": 1, "rgb": 11184810}}
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.2,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": false,
+  "centerStrength": 0.5,
+  "repelStrength": 12,
+  "linkStrength": 1,
+  "linkDistance": 180,
+  "scale": 1,
+  "close": false
+}

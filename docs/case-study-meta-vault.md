@@ -59,3 +59,7 @@ The job to be done, in my own words: *"When I find useful material or a new topi
 - 5 bridges proposed, 5 accepted; 8 notes moved with 16 backlinks preserved
 - 5 archives per week (≈35 MB), last 6 kept, files over 20 MB skipped
 - 1 correction from me that became a rule, and 1 that changed a default
+
+## Day two: the blind spot
+
+After two days of use I opened the meta vault in Obsidian and saw nothing of what had been done. The bridges were real, but they lived inside the four child vaults, and Obsidian can't link across vaults. The routing log was a table of paths, not links. The fix was a generated **map** inside the meta vault: hubs for vaults and projects, nodes for materials and for every link, including the rejected ones, with NDA titles masked. Back-filled from two days of decisions: 27 materials, 33 links, 13 projects. The full write-up is in [10 · Make the meta vault visible](10-meta-vault-map.md).

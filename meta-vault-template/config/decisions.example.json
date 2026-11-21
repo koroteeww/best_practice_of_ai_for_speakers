@@ -1,0 +1,24 @@
+{
+  "_comment": "Copy to decisions.json. The source of truth for map/ in the meta vault. Accepted bridges are found by the scanner (meta_source in a bridge note's frontmatter); this file holds projects, display titles for materials and EVERY decision, including rejected and deferred bridges, so the AI never proposes them again. Paths are <vault_id>:<path inside the vault>. Status: accepted | rejected | deferred | home only. After editing: python scripts/scan.py scan (it rebuilds the map).",
+
+  "projects": [
+    {"name": "Day-job AI rollout", "status": "🟢", "home": "work:Home.md", "folders": ["work:"], "note": "NDA: only anonymized methods leave the vault"},
+    {"name": "New city project", "status": "🟢", "home": "project:Projects/New city.md", "folders": ["project:Projects/New city/"]},
+    {"name": "Speaking career", "status": "🟢", "home": "speaking:Speaker profile.md", "folders": []},
+    {"name": "Music album", "status": "🟡", "home": "personal:Projects/Album/Album — project.md", "folders": ["personal:Projects/Album/"], "note": "background until the current priority is done"},
+    {"name": "Closed startup", "status": "⚪", "home": "personal:Projects/Startup.md", "folders": [], "note": "archive: no bridges, only lessons and stories"}
+  ],
+
+  "materials": {
+    "work:Meetings/2026-01-15 Vendor call (Name).md": {"title": "Work — AI rollout meeting at a subsidiary", "project": "Day-job AI rollout"},
+    "personal:Projects/Album/Listener jobs research.md": {"title": "Listener jobs-to-be-done research"}
+  },
+
+  "decisions": [
+    {"date": "2026-01-15", "material": "work:Meetings/2026-01-15 Vendor call (Name).md", "to": "speaking", "status": "accepted", "note": "NDA approved separately, anonymized"},
+    {"date": "2026-01-16", "material": "personal:Projects/Album/Listener jobs research.md", "to": "project", "status": "accepted", "note": "mechanism: a person chooses a solution in a situation"},
+    {"date": "2026-01-16", "material": "personal:Projects/Album/Listener jobs research.md", "to": "work", "status": "rejected", "note": "discovery interviews already exist there"},
+    {"date": "2026-01-16", "material": "personal:Projects/Album/Album — project.md", "to": "speaking", "status": "deferred", "note": "a story only after the release, when there is proof"},
+    {"date": "2026-01-17", "material": "personal:Sources/AI chat export.md", "to": null, "status": "home only", "note": "reference about me, never quoted elsewhere"}
+  ]
+}

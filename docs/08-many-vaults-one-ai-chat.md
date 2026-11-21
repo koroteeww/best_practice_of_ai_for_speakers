@@ -18,6 +18,7 @@ This chapter describes a small **meta vault**: a folder that routes new material
             │  registry/      SQLite with a SHA-256 hash of every note             │
             │  digests/       "what's new" + up to 5 proposed bridges              │
             │  routing_log.md every decision, so the AI learns your corrections    │
+            │  map/           generated hubs and links you can see in Obsidian     │
             └───────┬──────────────┬──────────────┬──────────────┬────────────────┘
                     │              │              │              │
                personal          work          project        speaking
@@ -60,6 +61,8 @@ Other agents (Codex, Cursor, Gemini CLI) can use the same folder: `AGENTS.md` se
 5. **You decide.** The AI only proposes bridges, in a reply or in a digest. It writes to a vault only after your "yes".
 6. **At most five bridge proposals per digest**, strongest first. A weak link is worse than no link: if everything is connected to everything, nothing is.
 
+Real use added three more: projects get a relevance filter (🟢 now / 🟡 background / ⚪ archive, no bridges for the archive), every number is marked as fact or goal, and a story without proof becomes a *deferred* link. See [chapter 10](10-meta-vault-map.md).
+
 Where these rules come from: in Luhmann's Zettelkasten only about 2% of links crossed between its main parts, cross-domain links are rare and valuable, and they don't appear by themselves. Knowledge-management research on *boundary objects* says knowledge crosses between fields better as an adapted shared artifact than as a copy. Recent work on LLM-based analogy search says that removing domain vocabulary finds analogies that share no keywords. All 30 sources are listed in [`meta-vault-template/meta/sources.md`](../meta-vault-template/meta/sources.md).
 
 ## Why this matters for a speaker
@@ -93,7 +96,11 @@ On the **first run everything that exists is taken as the baseline**, so you don
 | "What's new?" | Runs the scan, reads only the new and changed notes, writes `digests/YYYY-MM-DD.md`: a short summary per vault + up to 5 proposed bridges with checkboxes. You tick the ones you want, it creates them |
 | "Clean up the bridges" | Lists bridges with no edits for 180+ days and bridges whose original disappeared. Deletes nothing without your yes |
 
-Every decision, including every rejected bridge, goes into `routing_log.md`. When you correct a route ("no, AI tools live in my personal vault"), the correction becomes a rule in `CLAUDE.md`, so you don't have to say it twice.
+Every decision, including every rejected bridge, goes into `config/decisions.json` (for the map) and `routing_log.md` (the history). When you correct a route ("no, AI tools live in my personal vault"), the correction becomes a rule in `CLAUDE.md`, so you don't have to say it twice.
+
+## See it: the map
+
+Bridges live in the child vaults, and Obsidian can't link across vaults, so from the meta vault alone you would see nothing. The scanner therefore generates `map/` inside the meta vault: a hub per vault and per project, a node per material and per link (accepted, rejected, deferred), all as ordinary wikilinks for the graph view. How and why: [chapter 10](10-meta-vault-map.md).
 
 ## Privacy is part of the design
 
@@ -113,3 +120,4 @@ Once several vaults depend on one setup, back them up. `scripts/backup.py` zips 
 3. Write one short profile per vault in `vaults/`: purpose, topics, what goes in, what doesn't, interests in other vaults.
 4. Add the vault paths to `.claude/settings.json` and open the folder in Claude Code.
 5. Run `python scripts/scan.py scan`, then say: **"What's new? Write the first digest."**
+6. Open the meta vault in Obsidian: `map/00 Map.md` and the graph show what was connected.

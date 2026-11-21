@@ -1,5 +1,5 @@
 {
-  "_comment": "Copy to vaults.json. path = folder with the notes; obsidian_vault + uri_prefix build obsidian://open links (uri_prefix is needed when the Obsidian vault root is a parent of path). exclude = folders the scanner skips. readonly = folders the AI must never edit. bridge_folder = where bridge notes go in this vault.",
+  "_comment": "Copy to vaults.json. path = folder with the notes; obsidian_vault + uri_prefix build obsidian://open links (uri_prefix is needed when the Obsidian vault root is a parent of path). exclude = folders the scanner skips. readonly = folders the AI must never edit. bridge_folder = where bridge notes go in this vault. mask_titles = never show this vault's file names in the map (NDA): the map uses a title from decisions.json or an anonymous label.",
   "vaults": [
     {
       "id": "personal",
@@ -16,6 +16,7 @@
     },
     {
       "id": "work",
+      "mask_titles": true,
       "name": "Work",
       "path": "D:\\Vaults\\Work",
       "obsidian_vault": "Work",
