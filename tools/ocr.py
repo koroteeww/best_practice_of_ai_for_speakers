@@ -14,6 +14,12 @@ Nothing leaves your computer. Stop at any time (Ctrl+C) and run again to continu
 import argparse, hashlib, io, os, shutil, sqlite3, subprocess, sys, zipfile
 from pathlib import Path
 
+for _s in (sys.stdout, sys.stderr):  # Windows consoles default to cp1251/cp437
+    try:
+        _s.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 IMG_EXT = {".jpg", ".jpeg", ".png", ".webp", ".jfif", ".bmp", ".tif", ".tiff", ".gif"}
 
 

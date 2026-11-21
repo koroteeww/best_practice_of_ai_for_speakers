@@ -9,6 +9,12 @@ This proves static rendering in LibreOffice, NOT PowerPoint compatibility. Still
 import argparse, os, re, shutil, subprocess, sys, tempfile
 from pathlib import Path
 
+for _s in (sys.stdout, sys.stderr):  # Windows consoles default to cp1251/cp437
+    try:
+        _s.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 
 def find_soffice(explicit):
     for c in [explicit, os.environ.get("SOFFICE"), shutil.which("soffice"), shutil.which("soffice.com"),

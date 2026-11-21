@@ -12,6 +12,12 @@ Safe to re-run: the database is rebuilt from scratch except the OCR table (see o
 import argparse, json, os, posixpath, re, sqlite3, sys, zipfile
 from datetime import datetime, timezone
 from pathlib import Path
+
+for _s in (sys.stdout, sys.stderr):  # Windows consoles default to cp1251/cp437
+    try:
+        _s.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 from xml.etree import ElementTree as ET
 
 SERVICE = "_ai"

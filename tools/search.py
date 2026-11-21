@@ -9,6 +9,12 @@ The query uses SQLite FTS5 syntax: words, "exact phrases", AND / OR / NOT, prefi
 import argparse, sqlite3, sys
 from pathlib import Path
 
+for _s in (sys.stdout, sys.stderr):  # Windows consoles default to cp1251/cp437
+    try:
+        _s.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)

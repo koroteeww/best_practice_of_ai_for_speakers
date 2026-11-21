@@ -11,13 +11,19 @@ Build a styled, editable 16:9 PPTX from a Markdown talk script.
 Generalised from a real screencast build. After building, render and look:
     python tools/check_render.py examples/out/example.pptx
 """
-import argparse, io, re
+import argparse, io, re, sys
 from pathlib import Path
 
 from pptx import Presentation
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.util import Inches, Pt
+
+for _s in (sys.stdout, sys.stderr):  # Windows consoles default to cp1251/cp437
+    try:
+        _s.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 THEME = dict(bg="12131B", card="1D202C", line="363A4A", ink="FFFFFF", muted="C4C8D4", accent="FFBE62", font="Segoe UI")
 

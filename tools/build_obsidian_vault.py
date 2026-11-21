@@ -21,6 +21,12 @@ Config (JSON, optional): see tools/vault_config.example.json
 import argparse, collections, json, re, shutil, sqlite3, sys
 from pathlib import Path
 
+for _s in (sys.stdout, sys.stderr):  # Windows consoles default to cp1251/cp437
+    try:
+        _s.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 REPO = Path(__file__).resolve().parent.parent
 BASE = "_Base"
 IMG = {".jpg", ".jpeg", ".png", ".webp", ".jfif", ".gif", ".svg"}
