@@ -38,6 +38,7 @@ This repository shows a workflow that has been tested on a real archive of about
 | [`docs/10-meta-vault-map.md`](docs/10-meta-vault-map.md) | Make the meta vault visible: a generated map of vaults, projects, materials and links (accepted, rejected, deferred), with NDA titles masked |
 | [`docs/case-study-screencast.md`](docs/case-study-screencast.md) | Case study: a 13-slide screencast built in one morning from a speaker's archive |
 | [`docs/case-study-meta-vault.md`](docs/case-study-meta-vault.md) | Case study and reflection: building the meta vault for four real vaults in one session with Claude Code |
+| [`docs/case-study-one-month-in-numbers.md`](docs/case-study-one-month-in-numbers.md) | One month with an AI agent in numbers: 5 vaults, 1,210 notes, ~13,500 links, 578 messages, and what it really took |
 | [`vault-template/`](vault-template/) | A ready-to-open Obsidian vault with templates, dashboards and example notes |
 | [`meta-vault-template/`](meta-vault-template/) | A ready-to-copy meta vault: `CLAUDE.md` rules, vault profiles, project registry, hash registry with a generated map of links, bridge and digest templates, weekly backup |
 | [`tools/kb.py`](tools/kb.py) | **The agent's tool**: slide-level index and search, slide text and PNG, contact sheets, Obsidian candidate lists, `check` for built decks. Results are saved as JSON files in `_ai/kb_out/`, and the console shows one line |
